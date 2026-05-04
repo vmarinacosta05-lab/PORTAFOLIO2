@@ -34,7 +34,7 @@ body {
 
 # 🏷️ TÍTULO
 st.markdown("<div class='title'>🚀 Mi Portafolio</div>", unsafe_allow_html=True)
-st.markdown("<div class='subtitle'>ML & AI Apps con Streamlit</div>", unsafe_allow_html=True)
+st.markdown("<div class='subtitle'>Valentina Marín</div>", unsafe_allow_html=True)
 
 st.markdown("---")
 
