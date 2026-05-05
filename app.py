@@ -1,339 +1,283 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portafolio 2 · Valentina Marín</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --pink:   #FF6B9D;
-      --yellow: #FFD166;
-      --green:  #06D6A0;
-      --blue:   #118AB2;
-      --purple: #A259FF;
-      --orange: #FF9F1C;
-      --red:    #EF476F;
-      --bg:     #FFF8F0;
-      --dark:   #1A1A2E;
-    }
+import streamlit as st
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+st.set_page_config(
+    page_title="Portafolio 2 - Valentina Marin",
+    page_icon="rocket",
+    layout="wide"
+)
 
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--bg);
-      color: var(--dark);
-      overflow-x: hidden;
-    }
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
 
-    /* ── CONFETTI BLOBS ── */
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.18;
-      pointer-events: none;
-    }
+html, body, [class*="css"] {
+    font-family: 'Nunito', sans-serif;
+    background-color: #FFF8F0;
+}
 
-    /* ── HEADER ── */
-    header {
-      position: relative;
-      text-align: center;
-      padding: 60px 20px 40px;
-      overflow: hidden;
-    }
+.stApp {
+    background-color: #FFF8F0;
+}
 
-    .blob-1  { width:180px; height:180px; background:var(--pink);   top:-30px;  left:-40px; }
-    .blob-2  { width:120px; height:120px; background:var(--green);  top:40px;   left:180px; }
-    .blob-3  { width:200px; height:200px; background:var(--yellow); top:-50px;  right:-50px; }
-    .blob-4  { width:100px; height:100px; background:var(--blue);   bottom:0;   right:200px; }
-    .blob-5  { width:140px; height:140px; background:var(--purple); top:20px;   right:240px; }
+/* Header */
+.header-container {
+    text-align: center;
+    padding: 40px 20px 20px;
+    position: relative;
+}
 
-    .badge {
-      display: inline-block;
-      background: var(--dark);
-      color: #fff;
-      font-family: 'Fredoka One', cursive;
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      padding: 10px 28px;
-      border-radius: 999px;
-      margin-bottom: 18px;
-      animation: fadeDown 0.6s ease both;
-    }
+.badge {
+    display: inline-block;
+    background: #1A1A2E;
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    padding: 10px 28px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+}
 
-    h1.main-title {
-      font-family: 'Fredoka One', cursive;
-      font-size: clamp(2.6rem, 7vw, 5rem);
-      line-height: 1;
-      animation: fadeDown 0.7s 0.1s ease both;
-    }
+.main-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
 
-    /* Rainbow letter colors */
-    h1.main-title span:nth-child(1)  { color: var(--red);    }
-    h1.main-title span:nth-child(2)  { color: var(--orange); }
-    h1.main-title span:nth-child(3)  { color: var(--yellow); }
-    h1.main-title span:nth-child(4)  { color: var(--green);  }
-    h1.main-title span:nth-child(5)  { color: var(--blue);   }
-    h1.main-title span:nth-child(6)  { color: var(--purple); }
-    h1.main-title span:nth-child(7)  { color: var(--pink);   }
-    h1.main-title span:nth-child(8)  { color: var(--red);    }
-    h1.main-title span:nth-child(9)  { color: var(--orange); }
-    h1.main-title span:nth-child(10) { color: var(--yellow); }
-    h1.main-title span:nth-child(11) { color: var(--green);  }
+.main-title span:nth-child(1)  { color: #EF476F; }
+.main-title span:nth-child(2)  { color: #FF9F1C; }
+.main-title span:nth-child(3)  { color: #FFD166; }
+.main-title span:nth-child(4)  { color: #06D6A0; }
+.main-title span:nth-child(5)  { color: #118AB2; }
+.main-title span:nth-child(6)  { color: #A259FF; }
+.main-title span:nth-child(7)  { color: #FF6B9D; }
+.main-title span:nth-child(8)  { color: #EF476F; }
+.main-title span:nth-child(9)  { color: #FF9F1C; }
+.main-title span:nth-child(10) { color: #FFD166; }
+.main-title span:nth-child(11) { color: #06D6A0; }
 
-    .subtitle {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--dark);
-      margin-top: 10px;
-      letter-spacing: 1px;
-      animation: fadeDown 0.7s 0.2s ease both;
-    }
+.subtitle {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    color: #1A1A2E;
+    margin-top: 6px;
+}
 
-    /* ── RAINBOW BAR ── */
-    .rainbow-bar {
-      height: 10px;
-      background: linear-gradient(90deg,
-        var(--red), var(--orange), var(--yellow),
-        var(--green), var(--blue), var(--purple), var(--pink),
-        var(--red), var(--orange), var(--yellow));
-      background-size: 200%;
-      animation: slide 4s linear infinite;
-      margin: 36px 0 0;
-    }
+/* Rainbow bar */
+.rainbow-bar {
+    height: 10px;
+    background: linear-gradient(90deg,
+        #EF476F, #FF9F1C, #FFD166,
+        #06D6A0, #118AB2, #A259FF, #FF6B9D,
+        #EF476F, #FF9F1C, #FFD166);
+    border-radius: 0;
+    margin: 30px 0;
+}
 
-    @keyframes slide { from{background-position:0%} to{background-position:200%} }
+/* Section title */
+.section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    color: #1A1A2E;
+    margin-bottom: 6px;
+}
 
-    /* ── SECTION ── */
-    section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 52px 24px 60px;
-    }
+.section-line {
+    height: 5px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #FF6B9D, #FFD166, #06D6A0, #118AB2, #A259FF);
+    margin-bottom: 30px;
+}
 
-    .section-title {
-      font-family: 'Fredoka One', cursive;
-      font-size: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
+/* Cards */
+.card {
+    border: 2.5px solid #1A1A2E;
+    border-radius: 20px;
+    padding: 28px 24px 22px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 5px 5px 0 #1A1A2E;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+    height: 100%;
+}
 
-    .section-line {
-      height: 5px;
-      border-radius: 99px;
-      background: linear-gradient(90deg, var(--pink), var(--yellow), var(--green), var(--blue), var(--purple));
-      margin-bottom: 40px;
-    }
+.card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 #1A1A2E;
+}
 
-    /* ── GRID ── */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 24px;
-    }
+.card-pink   { background: #FFF0F5; }
+.card-blue   { background: #F0F8FF; }
+.card-green  { background: #F0FFF8; }
+.card-yellow { background: #FFFBF0; }
+.card-purple { background: #F8F0FF; }
+.card-orange { background: #FFF4F0; }
+.card-red    { background: #FFF0F2; }
 
-    /* ── CARD ── */
-    .card {
-      background: #fff;
-      border: 2.5px solid var(--dark);
-      border-radius: 20px;
-      padding: 28px 24px 22px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 5px 5px 0 var(--dark);
-      transition: transform 0.2s, box-shadow 0.2s;
-      animation: fadeUp 0.5s ease both;
-    }
+.card-emoji {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    display: block;
+}
 
-    .card:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 8px 8px 0 var(--dark);
-    }
+.card-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    color: #1A1A2E;
+    margin-bottom: 8px;
+}
 
-    /* Decorative circle top-right */
-    .card::after {
-      content:'';
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      top: -20px;
-      right: -20px;
-      opacity: 0.25;
-    }
+.card-desc {
+    font-size: 0.88rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
 
-    /* Card color variants */
-    .card:nth-child(1) { background: #FFF0F5; } .card:nth-child(1)::after { background: var(--pink);   }
-    .card:nth-child(2) { background: #F0F8FF; } .card:nth-child(2)::after { background: var(--blue);   }
-    .card:nth-child(3) { background: #F0FFF8; } .card:nth-child(3)::after { background: var(--green);  }
-    .card:nth-child(4) { background: #FFFBF0; } .card:nth-child(4)::after { background: var(--yellow); }
-    .card:nth-child(5) { background: #F8F0FF; } .card:nth-child(5)::after { background: var(--purple); }
-    .card:nth-child(6) { background: #FFF4F0; } .card:nth-child(6)::after { background: var(--orange); }
-    .card:nth-child(7) { background: #FFF0F2; } .card:nth-child(7)::after { background: var(--red);    }
+.btn-pink   { background: #FF6B9D; }
+.btn-blue   { background: #118AB2; }
+.btn-green  { background: #06D6A0; }
+.btn-yellow { background: #FFD166; color: #1A1A2E !important; }
+.btn-purple { background: #A259FF; }
+.btn-orange { background: #FF9F1C; }
+.btn-red    { background: #EF476F; }
 
-    .card-emoji {
-      font-size: 2rem;
-      margin-bottom: 12px;
-      display: block;
-    }
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.95rem;
+    padding: 8px 22px;
+    border-radius: 999px;
+    color: white;
+    border: 2px solid #1A1A2E;
+    box-shadow: 3px 3px 0 #1A1A2E;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
 
-    .card-title {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-      color: var(--dark);
-    }
+.btn:hover {
+    transform: translate(-2px,-2px);
+    box-shadow: 5px 5px 0 #1A1A2E;
+    text-decoration: none;
+}
 
-    .card-desc {
-      font-size: 0.88rem;
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 18px;
-    }
+footer-custom {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
 
-    /* Button per card color */
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      font-family: 'Fredoka One', cursive;
-      font-size: 0.9rem;
-      padding: 8px 20px;
-      border-radius: 999px;
-      color: #fff;
-      border: 2px solid var(--dark);
-      box-shadow: 3px 3px 0 var(--dark);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .btn:hover {
-      transform: translate(-2px,-2px);
-      box-shadow: 5px 5px 0 var(--dark);
-    }
+/* Hide streamlit default elements */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
 
-    .card:nth-child(1) .btn { background: var(--pink);   }
-    .card:nth-child(2) .btn { background: var(--blue);   }
-    .card:nth-child(3) .btn { background: var(--green);  }
-    .card:nth-child(4) .btn { background: var(--yellow); color: var(--dark); }
-    .card:nth-child(5) .btn { background: var(--purple); }
-    .card:nth-child(6) .btn { background: var(--orange); }
-    .card:nth-child(7) .btn { background: var(--red);    }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 28px 16px 40px;
-      font-size: 0.85rem;
-      color: #888;
-      font-weight: 700;
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeDown {
-      from { opacity:0; transform:translateY(-20px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(30px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-
-    /* stagger cards */
-    .card:nth-child(1) { animation-delay: 0.05s; }
-    .card:nth-child(2) { animation-delay: 0.12s; }
-    .card:nth-child(3) { animation-delay: 0.19s; }
-    .card:nth-child(4) { animation-delay: 0.26s; }
-    .card:nth-child(5) { animation-delay: 0.33s; }
-    .card:nth-child(6) { animation-delay: 0.40s; }
-    .card:nth-child(7) { animation-delay: 0.47s; }
-  </style>
-</head>
-<body>
-
-<!-- ── HEADER ── -->
-<header>
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
-  <div class="blob blob-4"></div>
-  <div class="blob blob-5"></div>
-
-  <div class="badge">✦ ML &amp; AI APPS · STREAMLIT ✦</div>
-
-  <h1 class="main-title">
-    <span>P</span><span>O</span><span>R</span><span>T</span><span>A</span><span>F</span><span>O</span><span>L</span><span>I</span><span>O</span><span> 2</span>
-  </h1>
-
-  <p class="subtitle">✨ Valentina Marín ✨</p>
-</header>
-
+# ── HEADER ──
+st.markdown("""
+<div class="header-container">
+    <div class="badge">&#10022; ML & AI APPS &middot; STREAMLIT &#10022;</div>
+    <div class="main-title">
+        <span>P</span><span>O</span><span>R</span><span>T</span><span>A</span><span>F</span><span>O</span><span>L</span><span>I</span><span>O</span><span>&nbsp;2</span>
+    </div>
+    <div class="subtitle">&#10024; Valentina Mar&#237;n &#10024;</div>
+</div>
 <div class="rainbow-bar"></div>
+""", unsafe_allow_html=True)
 
-<!-- ── PROJECTS ── -->
-<section>
-  <h2 class="section-title">🚀 Proyectos</h2>
-  <div class="section-line"></div>
+# ── PROJECTS SECTION ──
+st.markdown("""
+<div class="section-title">&#128640; Proyectos</div>
+<div class="section-line"></div>
+""", unsafe_allow_html=True)
 
-  <div class="grid">
+# Projects data
+projects = [
+    {
+        "emoji": "&#128021;",
+        "title": "Chatbot sobre razas de perros",
+        "desc": "App que permite consultar un PDF sobre razas de perros mediante un chatbot interactivo.",
+        "link": "https://chatpdfvalen.streamlit.app/",
+        "card_class": "card-pink",
+        "btn_class": "btn-pink",
+    },
+    {
+        "emoji": "&#128444;&#65039;",
+        "title": "Interpretaci&#243;n de im&#225;genes multimodal",
+        "desc": "Los modelos comprenden im&#225;genes y generan texto o descripciones visuales a partir de ellas.",
+        "link": "https://imagenchatvalen.streamlit.app/",
+        "card_class": "card-blue",
+        "btn_class": "btn-blue",
+    },
+    {
+        "emoji": "&#9997;&#65039;",
+        "title": "Reconocimiento de D&#237;gitos escritos a mano",
+        "desc": "Modelo que identifica y clasifica d&#237;gitos escritos a mano usando visi&#243;n artificial.",
+        "link": "https://handwritevalen.streamlit.app/",
+        "card_class": "card-green",
+        "btn_class": "btn-green",
+    },
+    {
+        "emoji": "&#127912;",
+        "title": "Tablero Inteligente",
+        "desc": "Lienzo interactivo para dibujar directamente en el navegador con herramientas creativas e IA.",
+        "link": "https://drawvalentina.streamlit.app/",
+        "card_class": "card-yellow",
+        "btn_class": "btn-yellow",
+    },
+    {
+        "emoji": "&#128054;&#128214;",
+        "title": "Detector de razas y creador de historias",
+        "desc": "Detecta la raza de un perro en una imagen y genera una historia creativa sobre &#233;l.",
+        "link": "https://dibujovalen.streamlit.app/",
+        "card_class": "card-purple",
+        "btn_class": "btn-purple",
+    },
+    {
+        "emoji": "&#127897;&#65039;",
+        "title": "Control por Voz",
+        "desc": "Interfaz que permite controlar acciones y comandos usando reconocimiento de voz en tiempo real.",
+        "link": "https://controlporvozwokwi.streamlit.app/",
+        "card_class": "card-orange",
+        "btn_class": "btn-orange",
+    },
+    {
+        "emoji": "&#127923;",
+        "title": "Controlador de Valen",
+        "desc": "Panel de control personalizado con comandos de voz y automatizaciones interactivas.",
+        "link": "https://controlporvozwokwi.streamlit.app/",
+        "card_class": "card-red",
+        "btn_class": "btn-red",
+    },
+]
 
-    <div class="card">
-      <span class="card-emoji">🐕</span>
-      <div class="card-title">Chatbot sobre razas de perros</div>
-      <p class="card-desc">App que permite consultar un PDF sobre razas de perros mediante un chatbot interactivo.</p>
-      <a class="btn" href="https://chatpdfvalen.streamlit.app/" target="_blank">Abrir app ↗</a>
-    </div>
+# Render in rows of 3
+cols_per_row = 3
+for i in range(0, len(projects), cols_per_row):
+    cols = st.columns(cols_per_row)
+    for j, col in enumerate(cols):
+        idx = i + j
+        if idx < len(projects):
+            p = projects[idx]
+            with col:
+                st.markdown(f"""
+                <div class="card {p['card_class']}">
+                    <span class="card-emoji">{p['emoji']}</span>
+                    <div class="card-title">{p['title']}</div>
+                    <p class="card-desc">{p['desc']}</p>
+                    <a class="btn {p['btn_class']}" href="{p['link']}" target="_blank">Abrir app &#8599;</a>
+                </div>
+                """, unsafe_allow_html=True)
 
-    <div class="card">
-      <span class="card-emoji">🖼️</span>
-      <div class="card-title">Interpretación de imágenes multimodal</div>
-      <p class="card-desc">Los modelos comprenden imágenes y generan texto o descripciones visuales a partir de ellas.</p>
-      <a class="btn" href="https://imagenchatvalen.streamlit.app/" target="_blank">Abrir app ↗</a>
-    </div>
-
-    <div class="card">
-      <span class="card-emoji">✍️</span>
-      <div class="card-title">Reconocimiento de Dígitos escritos a mano</div>
-      <p class="card-desc">Modelo que identifica y clasifica dígitos escritos a mano usando visión artificial.</p>
-      <a class="btn" href="https://handwritevalen.streamlit.app/" target="_blank">Abrir app ↗</a>
-    </div>
-
-    <div class="card">
-      <span class="card-emoji">🎨</span>
-      <div class="card-title">Tablero Inteligente</div>
-      <p class="card-desc">Lienzo interactivo para dibujar directamente en el navegador con herramientas creativas e IA.</p>
-      <a class="btn" href="https://drawvalentina.streamlit.app/" target="_blank">Abrir app ↗</a>
-    </div>
-
-    <div class="card">
-      <span class="card-emoji">🐶📖</span>
-      <div class="card-title">Detector de razas y creador de historias</div>
-      <p class="card-desc">Detecta la raza de un perro en una imagen y genera una historia creativa sobre él.</p>
-      <a class="btn" href="https://dibujovalen.streamlit.app/" target="_blank">Abrir app ↗</a>
-    </div>
-
-    <div class="card">
-      <span class="card-emoji">🎙️</span>
-      <div class="card-title">Control por Voz</div>
-      <p class="card-desc">Interfaz que permite controlar acciones y comandos usando reconocimiento de voz en tiempo real.</p>
-      <a class="btn" href="https://controlporvozwokwi.streamlit.app/" target="_blank">Abrir app ↗</a>
-    </div>
-
-    <div class="card">
-      <span class="card-emoji">🎛️</span>
-      <div class="card-title">Controlador de Valen</div>
-      <p class="card-desc">Panel de control personalizado con comandos de voz y automatizaciones interactivas.</p>
-      <a class="btn" href="https://controlporvozwokwi.streamlit.app/" target="_blank">Abrir app ↗</a>
-    </div>
-
-  </div>
-</section>
-
-<div class="rainbow-bar"></div>
-
-<footer>
-  Hecho con 💖 por <strong>Valentina Marín</strong> · Portafolio 2
-</footer>
-
-</body>
-</html>
+# ── FOOTER ──
+st.markdown("<div class='rainbow-bar'></div>", unsafe_allow_html=True)
+st.markdown("""
+<div style="text-align:center; padding:20px; color:#888; font-weight:700; font-size:0.9rem;">
+    Hecho con &#128150; por <strong>Valentina Mar&#237;n</strong> &nbsp;&middot;&nbsp; Portafolio 2
+</div>
+""", unsafe_allow_html=True)
